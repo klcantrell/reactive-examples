@@ -1,0 +1,15 @@
+<main>
+  <h1>Star Wars People</h1>
+  <button (click)="swapiService.getSwapiPeople()">Fetch them</button>
+  <p *ngIf="swapiService.showLoading | async">Loading...</p>
+  <p *ngIf="(swapiService.swapiStatus | async) === 'error'">Yikes, we ran into some trouble. Try again, please</p>
+  <ul *ngIf="(swapiService.swapiStatus | async) === 'fetching' || (swapiService.swapiStatus | async) === 'loaded'">
+    <li *ngFor="let person of (swapiService.swapiData | async)">
+      {{ person.name }}
+    </li>
+  </ul>
+</main>
+
+<div class="header">
+  <app-header></app-header>
+</div>
