@@ -1,4 +1,4 @@
-import useObservableState from '../hooks/useObservableValue';
+import useObservableState from '../hooks/useObservableState';
 import swapiStore from 'swapi-store';
 
 export default function Header() {

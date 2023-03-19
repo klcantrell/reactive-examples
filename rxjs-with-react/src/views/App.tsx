@@ -1,5 +1,5 @@
 import Header from '../components/Header';
-import useObservableState from '../hooks/useObservableValue';
+import useObservableState from '../hooks/useObservableState';
 import swapiStore from 'swapi-store';
 
 import './App.css';
