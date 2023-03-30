@@ -1,0 +1,6 @@
+framework module SwapiStore {
+    umbrella header "SwapiStore.h"
+
+    export *
+    module * { export * }
+}

@@ -31,17 +31,17 @@ data class StarWarsPerson(val name: String)
 data class PeopleResponse(val results: List<StarWarsPerson>)
 
 sealed class PeopleData {
-    object Initial : PeopleData()
-    object Loading : PeopleData()
+    class Initial : PeopleData()
+    class Loading : PeopleData()
     class Fetching(val data: List<StarWarsPerson>) : PeopleData()
     class Loaded(val data: List<StarWarsPerson>) : PeopleData()
-    object Error : PeopleData()
+    class Error : PeopleData()
 }
 
 
 @OptIn(FlowPreview::class)
 class MainViewModel : ViewModel() {
-    private val _peopleData = MutableStateFlow<PeopleData>(PeopleData.Initial)
+    private val _peopleData = MutableStateFlow<PeopleData>(PeopleData.Initial())
     val peopleData = _peopleData.asStateFlow()
 
     private val _displayLoader = MutableStateFlow(false)
@@ -78,10 +78,12 @@ class MainViewModel : ViewModel() {
     private suspend fun collectPeopleData() {
         getPeople.debounce(300).onEach {
             when (val currentData = peopleData.value) {
-                is PeopleData.Initial, PeopleData.Error -> _peopleData.value =
-                    PeopleData.Loading
-                is PeopleData.Loaded -> _peopleData.value =
-                    PeopleData.Fetching(data = currentData.data)
+                is PeopleData.Initial ->
+                    _peopleData.value = PeopleData.Loading()
+                is PeopleData.Error ->
+                    _peopleData.value = PeopleData.Loading()
+                is PeopleData.Loaded ->
+                    _peopleData.value = PeopleData.Fetching(data = currentData.data)
                 else -> Unit
             }
         }.collectLatest {
@@ -97,7 +99,7 @@ class MainViewModel : ViewModel() {
                 if (cause is CancellationException) {
                     return@collectLatest
                 }
-                _peopleData.value = PeopleData.Error
+                _peopleData.value = PeopleData.Error()
             }
         }
     }
