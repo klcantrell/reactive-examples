@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .button {
+    @apply flex w-full select-none items-center justify-center rounded-xl bg-sky-500 py-3 px-4 font-semibold text-white active:opacity-40 disabled:bg-gray-600;
+  }
+}
