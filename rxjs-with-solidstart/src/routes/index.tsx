@@ -1,5 +1,6 @@
 import { For, Show } from "solid-js";
 import { PeopleData, StarWarsPerson } from "swapi-store";
+import Header from "~/components/Header";
 
 import { showLoading, swapiActions, swapiData } from "~/stores/swapiStore";
 
@@ -31,6 +32,9 @@ export default function Home() {
       <Show when={showLoading()}>
         <p class="pt-3">Loading...</p>
       </Show>
+      <div class="absolute top-2 right-2">
+        <Header />
+      </div>
     </main>
   );
 }
