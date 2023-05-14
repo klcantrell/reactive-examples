@@ -1,6 +1,6 @@
 use wasm_bindgen::prelude::*;
 
-#[wasm_bindgen(module = "/js/swapi-store/dist/swapi-store.js")]
+#[wasm_bindgen(module = "/../swapi-store/dist/swapi-store.js")]
 extern "C" {
     #[wasm_bindgen(js_namespace = ["default", "actions"], js_name = getPeople)]
     pub fn get_people();
