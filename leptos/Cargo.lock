@@ -826,16 +826,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "leptos-tutorial"
-version = "0.1.0"
-dependencies = [
- "leptos",
- "serde",
- "serde-wasm-bindgen",
- "wasm-bindgen",
-]
-
-[[package]]
 name = "leptos_config"
 version = "0.2.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -875,6 +865,16 @@ dependencies = [
  "wasm-bindgen",
  "wasm-bindgen-futures",
  "web-sys",
+]
+
+[[package]]
+name = "leptos_example"
+version = "0.1.0"
+dependencies = [
+ "leptos",
+ "serde",
+ "serde-wasm-bindgen",
+ "wasm-bindgen",
 ]
 
 [[package]]

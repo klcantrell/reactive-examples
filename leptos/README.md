@@ -10,6 +10,12 @@ Install cargo trunk: https://trunkrs.dev/#install
 trunk serve --open
 ```
 
+## Compile CSS
+
+```
+npx tailwindcss -i ./app.config.css -o ./style/app.css --watch
+```
+
 ## Build
 
 ```

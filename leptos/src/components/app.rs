@@ -3,7 +3,7 @@ use wasm_bindgen::prelude::*;
 
 use crate::components::header::*;
 use crate::library::js::{get_people, setup_people_subscription};
-use crate::models::people::{PeopleData};
+use crate::models::people::PeopleData;
 
 #[component]
 pub fn App(cx: Scope) -> impl IntoView {
@@ -59,6 +59,13 @@ pub fn App(cx: Scope) -> impl IntoView {
                 fallback=|_| ()
             >
                 <p class="pt-3">"Loading..."</p>
+            </Show>
+
+            <Show
+                when=move || matches!(people_data(), PeopleData::Error)
+                fallback=|_| ()
+            >
+                <p class="pt-3">"Yikes, we ran into some trouble. Try again, please"</p>
             </Show>
 
             <div class="absolute top-2 right-2">
